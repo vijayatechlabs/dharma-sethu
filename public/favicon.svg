@@ -1,0 +1,28 @@
+<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="M32 8C32 8 26 18 26 28C26 34 28.5 38 32 40C35.5 38 38 34 38 28C38 18 32 8 32 8Z"
+    fill="#C9A84C"
+    opacity="0.9"
+  />
+  <path
+    d="M32 40C28 38 18 36 14 28C12 24 12 20 14 16C16 20 22 32 32 40Z"
+    fill="#C9A84C"
+    opacity="0.7"
+  />
+  <path
+    d="M32 40C36 38 46 36 50 28C52 24 52 20 50 16C48 20 42 32 32 40Z"
+    fill="#C9A84C"
+    opacity="0.7"
+  />
+  <path
+    d="M32 40C26 39 12 40 6 34C3 31 2 27 4 23C7 28 20 36 32 40Z"
+    fill="#C9A84C"
+    opacity="0.5"
+  />
+  <path
+    d="M32 40C38 39 52 40 58 34C61 31 62 27 60 23C57 28 44 36 32 40Z"
+    fill="#C9A84C"
+    opacity="0.5"
+  />
+  <ellipse cx="32" cy="44" rx="8" ry="3" fill="#C9A84C" opacity="0.3" />
+</svg>

@@ -70,11 +70,15 @@
     @apply bg-background text-foreground font-body antialiased;
   }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     font-family: var(--font-display);
   }
 
-  h4, h5, h6 {
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
   }
 }
@@ -117,12 +121,10 @@
 
   .gold-divider {
     height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      hsl(var(--gold) / 0.6),
-      transparent
-    );
+    background: linear-gradient(90deg,
+        transparent,
+        hsl(var(--gold) / 0.6),
+        transparent);
   }
 
   .bg-dark-base {
@@ -158,5 +160,1346 @@
     opacity: 0.06;
     pointer-events: none;
     z-index: 0;
+  }
+
+  /* ── Hero section photo background ── */
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    z-index: 1;
+    /* No lazy loading — this is the LCP element */
+    /* Slight warm color toning to blend with the overlay */
+    filter: saturate(1.1) brightness(0.95);
+  }
+
+  /* ═══════════════════════════════════════════
+
+     Our Sevas Section
+  ═══════════════════════════════════════════ */
+
+  /* ── Section shell ── */
+  .our-sevas-section {
+    position: relative;
+    overflow: hidden;
+    background-color: #3D0D0D;
+    padding: 5rem 0;
+  }
+
+  /* ── Mandala watermark ── */
+  .sevas-mandala-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Ccircle cx='120' cy='120' r='100' fill='none' stroke='%23C9A84C' stroke-width='0.6'/%3E%3Ccircle cx='120' cy='120' r='80' fill='none' stroke='%23C9A84C' stroke-width='0.5'/%3E%3Ccircle cx='120' cy='120' r='60' fill='none' stroke='%23C9A84C' stroke-width='0.4'/%3E%3Ccircle cx='120' cy='120' r='40' fill='none' stroke='%23C9A84C' stroke-width='0.4'/%3E%3Ccircle cx='120' cy='120' r='20' fill='none' stroke='%23C9A84C' stroke-width='0.4'/%3E%3Cpath d='M120 20 L120 220 M20 120 L220 120 M48.6 48.6 L191.4 191.4 M191.4 48.6 L48.6 191.4 M20 120 Q120 100 220 120 Q120 140 20 120' stroke='%23C9A84C' stroke-width='0.3' fill='none'/%3E%3C/svg%3E");
+    background-size: 420px;
+    background-position: center;
+    background-repeat: repeat;
+    opacity: 0.055;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Header ── */
+  .sevas-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .sevas-om {
+    font-family: var(--font-sanskrit);
+    font-size: 2.2rem;
+    color: hsl(43 52% 58% / 0.55);
+    margin-bottom: 0.75rem;
+    line-height: 1;
+    display: block;
+    animation: sevas-float 4s ease-in-out infinite;
+  }
+
+  @keyframes sevas-float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .sevas-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    color: hsl(43 52% 62%);
+    letter-spacing: 0.02em;
+    line-height: 1.25;
+    margin: 0 0 0.75rem;
+  }
+
+  .sevas-shloka {
+    font-family: var(--font-sanskrit);
+    font-size: 14px;
+    font-style: italic;
+    color: hsl(43 52% 62%);
+    opacity: 0.85;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+  }
+
+  .sevas-title-divider {
+    width: 6rem;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(43 52% 54% / 0.8), transparent);
+    border-radius: 999px;
+  }
+
+  /* ── Grid ── */
+  .seva-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  @media (max-width: 1023px) {
+    .seva-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 639px) {
+    .seva-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+
+  /* ── Individual card ── */
+  .seva-card {
+    position: relative;
+    background-color: #1A0A00;
+    border: 1px solid hsl(43 52% 48% / 0.5);
+    border-radius: 1rem;
+    padding: 2rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition:
+      transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      border-color 0.3s ease,
+      box-shadow 0.35s ease;
+    cursor: default;
+    overflow: hidden;
+  }
+
+  /* Top glow accent line */
+  .seva-card-topline {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(22 81% 52% / 0.6), transparent);
+    border-radius: 0 0 4px 4px;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+  }
+
+  .seva-card:hover .seva-card-topline {
+    opacity: 1;
+  }
+
+  /* Hover state */
+  .seva-card:hover {
+    transform: scale(1.03) translateY(-3px);
+    border-color: hsl(22 81% 55% / 0.85);
+    box-shadow:
+      0 0 0 1px hsl(22 81% 55% / 0.3),
+      0 0 24px hsl(22 81% 50% / 0.25),
+      0 8px 32px hsl(22 81% 35% / 0.3),
+      inset 0 1px 0 hsl(43 52% 54% / 0.1);
+  }
+
+  /* ── Icon wrapper ── */
+  .seva-icon-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 1px solid hsl(22 81% 50% / 0.3);
+    background: hsl(22 81% 50% / 0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .seva-card:hover .seva-icon-wrap {
+    background: hsl(22 81% 50% / 0.14);
+    border-color: hsl(22 81% 55% / 0.6);
+  }
+
+  /* ── Card title ── */
+  .seva-card-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: hsl(43 52% 65%);
+    margin: 0 0 0.75rem;
+    letter-spacing: 0.015em;
+    line-height: 1.3;
+  }
+
+  /* ── Divider ── */
+  .seva-divider {
+    width: 2.5rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(43 52% 50% / 0.5), transparent);
+    margin-bottom: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  /* ── Description ── */
+  .seva-card-desc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.6;
+    color: hsl(36 40% 82%);
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+
+  /* ── Footer ── */
+  .seva-card-footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid hsl(43 52% 40% / 0.25);
+    padding-top: 1rem;
+    margin-top: auto;
+  }
+
+  .seva-price {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    color: #E87B2A;
+    letter-spacing: 0.01em;
+  }
+
+  .seva-book-link {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: hsl(43 52% 65%);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease, gap 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .seva-book-link:hover {
+    color: hsl(43 52% 80%);
+    text-shadow: 0 0 8px hsl(43 52% 54% / 0.4);
+  }
+
+  /* ── CTA ── */
+  .sevas-cta {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sevas-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #E87B2A 0%, #C85E10 100%);
+    color: hsl(30 100% 97%);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.85rem 2.25rem;
+    border-radius: 0.625rem;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    box-shadow: 0 4px 20px hsl(22 81% 40% / 0.4);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, filter 0.25s ease;
+  }
+
+  .sevas-cta-btn:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 8px 30px hsl(22 81% 45% / 0.55);
+    filter: brightness(1.08);
+  }
+
+  /* ═══════════════════════════════════════════
+     Mission Section
+  ═══════════════════════════════════════════ */
+
+  /* Section shell */
+  .mission-section {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #E8651A 0%, #C04A10 30%, #8B1F1F 65%, #6B1A1A 100%);
+    padding: 6rem 0;
+  }
+
+  /* Grain overlay */
+  .mission-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 200px;
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: 0;
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+  }
+
+  /* Two-column grid */
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  /* Text column */
+  .mission-text-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* "Our Dharma" label */
+  .mission-label {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: hsl(43 52% 65%);
+    margin-bottom: 1.1rem;
+    opacity: 0.9;
+  }
+
+  /* Main headline */
+  .mission-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: hsl(30 100% 97%);
+    margin: 0 0 1.25rem;
+    letter-spacing: 0.01em;
+  }
+
+  .mission-headline-em {
+    font-style: italic;
+    color: hsl(43 52% 82%);
+  }
+
+  /* Gold divider */
+  .mission-divider {
+    width: 3.5rem;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(43 52% 64% / 0.9), hsl(43 52% 64% / 0.3));
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  /* Body */
+  .mission-body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.8;
+    color: hsl(30 100% 97% / 0.85);
+    margin-bottom: 2rem;
+    max-width: 52ch;
+  }
+
+  /* CTA link */
+  .mission-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    color: hsl(43 52% 72%);
+    text-decoration: underline;
+    text-decoration-color: hsl(43 52% 52% / 0.55);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease, gap 0.2s ease;
+    margin-bottom: 2.5rem;
+    width: fit-content;
+  }
+
+  .mission-cta:hover {
+    color: hsl(43 52% 88%);
+    text-decoration-color: hsl(43 52% 72% / 0.9);
+    gap: 0.5rem;
+  }
+
+  /* Shloka */
+  .mission-shloka {
+    font-family: var(--font-sanskrit);
+    font-size: 13px;
+    font-style: italic;
+    color: hsl(30 100% 97% / 0.5);
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+
+  /* Art column */
+  .mission-art-col {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── ॐ Ripple Animation ── */
+
+  .om-ripple-container {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* The ॐ symbol */
+  .om-symbol {
+    position: relative;
+    z-index: 10;
+    font-size: 8rem;
+    color: #FFD700;
+    line-height: 1;
+    text-shadow:
+      0 0 20px rgba(255, 215, 0, 0.5),
+      0 0 60px rgba(255, 215, 0, 0.25),
+      0 0 100px rgba(255, 215, 0, 0.12);
+    user-select: none;
+    /* Subtle breathing pulse on the symbol itself */
+    animation: om-breathe 4s ease-in-out infinite;
+  }
+
+  @keyframes om-breathe {
+
+    0%,
+    100% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.04);
+    }
+  }
+
+  /* Individual ripple wave circles */
+  .om-ripple-wave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 160px;
+    height: 160px;
+    margin-top: -80px;
+    margin-left: -80px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    animation: ripple 4s ease-out infinite;
+    pointer-events: none;
+  }
+
+  .om-ripple-wave--1 {
+    animation-delay: 0s;
+  }
+
+  .om-ripple-wave--2 {
+    animation-delay: 1s;
+  }
+
+  .om-ripple-wave--3 {
+    animation-delay: 2s;
+  }
+
+  .om-ripple-wave--4 {
+    animation-delay: 3s;
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(0.5);
+      opacity: 1;
+    }
+
+    100% {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .mission-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .mission-art-col {
+      order: -1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .om-ripple-container {
+      max-width: 280px;
+    }
+
+    .om-symbol {
+      font-size: 5rem;
+    }
+  }
+}
+
+@layer utilities {
+  /* ═══════════════════════════════════════════
+     WhatsApp CTA Section
+  ═══════════════════════════════════════════ */
+
+  /* ── Section shell ── */
+  .wa-section {
+    position: relative;
+    overflow: hidden;
+    background-color: #FDF6EC;
+    padding: 5rem 0;
+  }
+
+  /* ── Mandala watermark ── */
+  .wa-mandala-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 320'%3E%3Ccircle cx='160' cy='160' r='140' fill='none' stroke='%23C9A84C' stroke-width='0.9'/%3E%3Ccircle cx='160' cy='160' r='116' fill='none' stroke='%23C9A84C' stroke-width='0.7'/%3E%3Ccircle cx='160' cy='160' r='92' fill='none' stroke='%23C9A84C' stroke-width='0.6'/%3E%3Ccircle cx='160' cy='160' r='68' fill='none' stroke='%23C9A84C' stroke-width='0.5'/%3E%3Ccircle cx='160' cy='160' r='44' fill='none' stroke='%23C9A84C' stroke-width='0.5'/%3E%3Ccircle cx='160' cy='160' r='20' fill='none' stroke='%23C9A84C' stroke-width='0.5'/%3E%3Cpath d='M160 20L160 300 M20 160L300 160 M57 57L263 263 M263 57L57 263 M160 20Q140 160 160 300Q180 160 160 20 M20 160Q160 140 300 160Q160 180 20 160' stroke='%23C9A84C' stroke-width='0.35' fill='none'/%3E%3C/svg%3E");
+    background-size: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Gold border box ── */
+  .wa-box {
+    position: relative;
+    border: 1.5px solid hsl(43 52% 54% / 0.55);
+    border-radius: 1.25rem;
+    padding: 3.5rem 3rem;
+    background: linear-gradient(160deg,
+        hsl(36 90% 97% / 0.7) 0%,
+        hsl(36 70% 95% / 0.4) 100%);
+    box-shadow:
+      0 0 0 4px hsl(43 52% 54% / 0.06),
+      0 8px 40px hsl(43 52% 40% / 0.08);
+  }
+
+  /* ── Corner flourishes ── */
+  .wa-corner {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    color: hsl(43 52% 52%);
+  }
+
+  .wa-corner-tl {
+    top: -1px;
+    left: -1px;
+    transform: rotate(0deg);
+  }
+
+  .wa-corner-tr {
+    top: -1px;
+    right: -1px;
+    transform: rotate(90deg);
+  }
+
+  .wa-corner-br {
+    bottom: -1px;
+    right: -1px;
+    transform: rotate(180deg);
+  }
+
+  .wa-corner-bl {
+    bottom: -1px;
+    left: -1px;
+    transform: rotate(270deg);
+  }
+
+  /* ── Inner content (centred column) ── */
+  .wa-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+  }
+
+  /* ── Om glyph ── */
+  .wa-om {
+    font-family: var(--font-sanskrit);
+    font-size: 1.8rem;
+    color: hsl(43 52% 52% / 0.5);
+    margin-bottom: 1rem;
+    line-height: 1;
+    display: block;
+  }
+
+  /* ── Headline ── */
+  .wa-headline {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+    font-weight: 700;
+    color: hsl(0 61% 26%);
+    margin: 0 0 1rem;
+    letter-spacing: 0.01em;
+    line-height: 1.25;
+  }
+
+  /* ── Sub-text ── */
+  .wa-sub {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.65;
+    color: hsl(24 60% 22%);
+    margin: 0 0 1.75rem;
+    max-width: 54ch;
+    opacity: 0.88;
+  }
+
+  /* ── Gold thin divider ── */
+  .wa-divider {
+    width: 5rem;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, hsl(43 52% 54% / 0.7), transparent);
+    border-radius: 999px;
+    margin-bottom: 2rem;
+    flex-shrink: 0;
+  }
+
+  /* ── Button row ── */
+  .wa-btn-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Lotus flanking icon */
+  .wa-lotus {
+    width: 40px;
+    height: 40px;
+    color: #E87B2A;
+    flex-shrink: 0;
+    opacity: 0.85;
+  }
+
+  /* Flip the right lotus horizontally */
+  .wa-lotus-flip {
+    transform: scaleX(-1);
+  }
+
+  /* ── WhatsApp button ── */
+  .wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    background-color: #25D366;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 700;
+    padding: 1rem 2.25rem;
+    border-radius: 16px;
+    text-decoration: none;
+    letter-spacing: 0.015em;
+    box-shadow:
+      0 4px 20px hsl(142 69% 40% / 0.35),
+      0 1px 0 hsl(142 69% 60% / 0.4) inset;
+    transition:
+      transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.28s ease,
+      background-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Shimmer sweep on hover */
+  .wa-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg,
+        transparent 35%,
+        hsl(0 0% 100% / 0.18) 50%,
+        transparent 65%);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+
+  .wa-btn:hover::before {
+    transform: translateX(100%);
+  }
+
+  .wa-btn:hover {
+    background-color: #1fbe5a;
+    transform: scale(1.04) translateY(-2px);
+    box-shadow:
+      0 8px 32px hsl(142 69% 40% / 0.5),
+      0 1px 0 hsl(142 69% 60% / 0.4) inset;
+  }
+
+  .wa-btn:active {
+    transform: scale(0.98) translateY(0);
+  }
+
+  /* WhatsApp logo inside button */
+  .wa-btn-logo {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+  }
+
+  /* ── Availability note ── */
+  .wa-note {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: hsl(24 60% 28%);
+    opacity: 0.7;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .wa-box {
+      padding: 2.5rem 1.5rem;
+    }
+
+    .wa-btn-row {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .wa-lotus {
+      display: none;
+    }
+
+    .wa-btn {
+      font-size: 16px;
+      padding: 0.9rem 1.75rem;
+    }
+
+    .wa-sub {
+      font-size: 16px;
+    }
+  }
+}
+
+@layer utilities {
+  /* ═══════════════════════════════════════════
+     Footer
+  ═══════════════════════════════════════════ */
+
+  /* ── Lotus petal divider ── */
+  .footer-lotus-divider {
+    width: 100%;
+    line-height: 0;
+    overflow: hidden;
+    background-color: #FDF6EC;
+    /* matches section above */
+  }
+
+  .footer-lotus-svg {
+    display: block;
+    width: 100%;
+    height: 72px;
+  }
+
+  /* ── Footer shell ── */
+  .footer-shell {
+    background-color: #1A0A00;
+    border-top: 2px solid hsl(43 52% 52% / 0.7);
+    padding-top: 3.5rem;
+    padding-bottom: 0;
+  }
+
+  /* ── 4-column grid ── */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  @media (max-width: 1023px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem 2rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  /* ── Generic column ── */
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ── Brand column pieces ── */
+  .footer-brand-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .footer-logo-icon {
+    width: 36px;
+    height: 36px;
+    color: #E87B2A;
+    flex-shrink: 0;
+  }
+
+  .footer-wordmark {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #E87B2A;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  .footer-tagline {
+    font-family: var(--font-sanskrit);
+    font-size: 12px;
+    color: hsl(43 52% 58%);
+    letter-spacing: 0.06em;
+    margin: 0 0 0.55rem;
+    font-style: normal;
+  }
+
+  .footer-entity {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: hsl(30 100% 97% / 0.5);
+    margin: 0 0 0.85rem;
+    line-height: 1.5;
+  }
+
+  .footer-brand-divider {
+    width: 2.5rem;
+    height: 1px;
+    background: linear-gradient(90deg, hsl(43 52% 52% / 0.6), transparent);
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* Social icons row */
+  .footer-social-row {
+    display: flex;
+    gap: 0.85rem;
+    align-items: center;
+  }
+
+  .footer-social-link {
+    color: hsl(30 100% 97% / 0.65);
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+  }
+
+  .footer-social-link:hover {
+    color: #E87B2A;
+    transform: translateY(-2px);
+  }
+
+  .footer-social-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* ── Column heading ── */
+  .footer-col-heading {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: hsl(43 52% 58%);
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid hsl(43 52% 52% / 0.2);
+  }
+
+  /* ── Nav link list (Sevas / Temples) ── */
+  .footer-link-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-nav-link {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: hsl(30 100% 97% / 0.7);
+    text-decoration: none;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .footer-nav-link::before {
+    content: '›';
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    font-size: 14px;
+    color: hsl(43 52% 58%);
+  }
+
+  .footer-nav-link:hover {
+    color: hsl(43 52% 65%);
+    padding-left: 0.35rem;
+  }
+
+  .footer-nav-link:hover::before {
+    opacity: 1;
+  }
+
+  /* Muted variant (e.g. "More Coming Soon") */
+  .footer-nav-link--muted {
+    color: hsl(30 100% 97% / 0.35);
+    font-style: italic;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* ── Contact list ── */
+  .footer-contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+  }
+
+  .footer-contact-icon {
+    font-size: 13px;
+    line-height: 1.5;
+    flex-shrink: 0;
+    filter: grayscale(0.3);
+  }
+
+  .footer-contact-link {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: hsl(30 100% 97% / 0.7);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    line-height: 1.5;
+  }
+
+  .footer-contact-link:hover {
+    color: hsl(43 52% 65%);
+  }
+
+  .footer-contact-text {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: hsl(30 100% 97% / 0.7);
+    line-height: 1.5;
+  }
+
+  /* ── Bottom bar ── */
+  .footer-bottom {
+    border-top: 1px solid hsl(43 52% 52% / 0.2);
+    padding: 1.25rem 0 1.5rem;
+    text-align: center;
+  }
+
+  .footer-copyright {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: hsl(30 100% 97% / 0.4);
+    letter-spacing: 0.03em;
+    margin: 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   GLOBAL MOBILE OPTIMISATION — 375px viewport
+   These rules are additive overrides layered on top of
+   each section's existing breakpoints.
+═══════════════════════════════════════════════════════ */
+
+@layer utilities {
+
+  /* ─────────────────────────────────────────
+     1. Ensure gold borders never collapse to
+        zero width / zero opacity on mobile
+  ───────────────────────────────────────── */
+  @media (max-width: 480px) {
+
+    .seva-card,
+    .wa-box,
+    .footer-shell,
+    .footer-col-heading {
+      border-color: hsl(43 52% 48% / 0.55);
+    }
+
+    /* Keep border on seva cards always visible */
+    .seva-card {
+      border-width: 1px;
+      border-style: solid;
+    }
+
+    /* Ensure WA box gold border always renders */
+    .wa-box {
+      border-width: 1.5px;
+      border-style: solid;
+    }
+  }
+
+  /* ─────────────────────────────────────────
+     2. Mandala watermarks — cap opacity so
+        they never overpower text on mobile
+  ───────────────────────────────────────── */
+  @media (max-width: 480px) {
+
+    .sevas-mandala-bg,
+    .wa-mandala-bg,
+    .mission-overlay {
+      opacity: 0.04 !important;
+    }
+
+    /* Hero mandala sits behind text — keep very faint */
+    .mandala-bg::before {
+      opacity: 0.04;
+    }
+  }
+
+  /* ─────────────────────────────────────────
+     3. Hero Section — headline 36px
+  ───────────────────────────────────────── */
+  @media (max-width: 480px) {
+
+    /* Hero uses Tailwind class text-4xl (36px) on the h1,
+       which already resolves to 2.25rem. We lock it here
+       so it never collapses further. */
+    .hero-headline,
+    section h1[class*="font-display"] {
+      font-size: 2.25rem !important;
+      /* 36px */
+      line-height: 1.22;
+    }
+
+    /* Tighten hero vertical padding so text is centred */
+    section.relative.min-h-screen {
+      min-height: 100svh;
+      padding-top: 5rem;
+      /* clears fixed nav */
+    }
+
+    /* Hero label — tighten tracking */
+    section.relative.min-h-screen p[class*="tracking"] {
+      letter-spacing: 0.15em;
+      font-size: 10px;
+    }
+
+    /* Hero sub-text */
+    section.relative.min-h-screen p[class*="font-body"]:not([class*="tracking"]) {
+      font-size: 15px;
+      margin-bottom: 2rem;
+    }
+
+    /* Hero CTA buttons — stack and stretch */
+    section.relative.min-h-screen .flex.flex-col.sm\:flex-row {
+      width: 100%;
+      gap: 0.75rem;
+    }
+
+    section.relative.min-h-screen button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  /* ─────────────────────────────────────────
+     4. All sections — 40px (2.5rem) vertical
+        padding on mobile
+  ───────────────────────────────────────── */
+  @media (max-width: 480px) {
+    .our-sevas-section {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .sevas-header {
+      margin-bottom: 2rem;
+    }
+
+    .sevas-cta {
+      margin-top: 2.5rem;
+    }
+
+    .mission-section {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .wa-section {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .footer-shell {
+      padding-top: 2.5rem;
+    }
+
+    /* How It Works — targets the section-padding utility */
+    .section-padding {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+  }
+
+  /* ─────────────────────────────────────────
+     5. Cards — single column on mobile
+        (already in place at 639px, but locked
+        for 375px certainty)
+  ───────────────────────────────────────── */
+  @media (max-width: 480px) {
+    .seva-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .seva-card {
+      padding: 1.5rem 1.25rem 1.25rem;
+    }
+
+    /* Slightly smaller icon circle */
+    .seva-icon-wrap {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  /* ─────────────────────────────────────────
+     6. WhatsApp CTA — full-width button
+  ───────────────────────────────────────── */
+  @media (max-width: 480px) {
+    .wa-box {
+      padding: 2rem 1.25rem;
+      border-radius: 1rem;
+    }
+
+    /* Remove lotus icons on very small screens (already done at 600px)
+       and make button span full available width */
+    .wa-btn-row {
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+    }
+
+    .wa-lotus {
+      display: none;
+    }
+
+    .wa-btn {
+      width: 100%;
+      justify-content: center;
+      font-size: 16px;
+      padding: 0.95rem 1.5rem;
+      border-radius: 12px;
+    }
+
+    .wa-headline {
+      font-size: 1.5rem;
+    }
+
+    .wa-sub {
+      font-size: 15px;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Corner flourishes — shrink slightly */
+    .wa-corner {
+      width: 36px;
+      height: 36px;
+    }
+
+    .wa-om {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  /* ─────────────────────────────────────────
+     7. Mission Section — single column
+  ───────────────────────────────────────── */
+  @media (max-width: 480px) {
+    .mission-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .mission-art-col {
+      order: -1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .om-ripple-container {
+      max-width: 220px;
+    }
+
+    .om-symbol {
+      font-size: 4rem;
+    }
+
+    /* Pause ripple animations on mobile to save battery */
+    .om-ripple-wave {
+      animation-play-state: paused;
+    }
+
+    .mission-headline {
+      font-size: 1.6rem;
+    }
+
+    .mission-body {
+      font-size: 15px;
+    }
+  }
+
+  /* ─────────────────────────────────────────
+     8. Footer — stack all 4 cols vertically
+        (already at 600px, but lock for 375px)
+  ───────────────────────────────────────── */
+  @media (max-width: 480px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      padding-bottom: 2rem;
+    }
+
+    .footer-lotus-svg {
+      height: 48px;
+      /* shorter divider on mobile */
+    }
+
+    .footer-wordmark {
+      font-size: 1rem;
+    }
+
+    /* Ensure column headings border remains visible */
+    .footer-col-heading {
+      border-bottom-color: hsl(43 52% 52% / 0.3);
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+    }
+
+    .footer-bottom {
+      padding: 1rem 0 1.25rem;
+    }
+  }
+
+  /* ─────────────────────────────────────────
+     9. How It Works section — horizontal
+        step indicators collapse to vertical
+  ───────────────────────────────────────── */
+  @media (max-width: 480px) {
+
+    /* Target any flex row connectors in HowItWorks */
+    [class*="how-it-works"] .flex-row,
+    [id="how-it-works"] {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  /* ─────────────────────────────────────────
+     10. Global — safe horizontal padding
+         and text sizing improvements
+  ───────────────────────────────────────── */
+  @media (max-width: 480px) {
+
+    /* Trust bar — already 2×2 from TrustBar.tsx, 
+       add a little breathing room */
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    /* Prevent over-long Sanskrit text from overflowing */
+    .sevas-shloka,
+    .mission-shloka,
+    .footer-tagline {
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* Slight type-size safety for tiny screens */
+    .sevas-title {
+      font-size: 1.4rem;
+    }
+
+    .sevas-cta-btn {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
   }
 }
