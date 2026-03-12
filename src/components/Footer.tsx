@@ -149,7 +149,7 @@ const Footer = () => (
                         {/* Social icons */}
                         <div className="footer-social-row">
                             <a
-                                href="https://wa.me/919999999999"
+                                href="https://wa.me/919550122329"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="footer-social-link"
